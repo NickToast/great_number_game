@@ -7,6 +7,7 @@ app.secret_key = 'life' 	#key goes into here
 def home():
     if "number" not in session:
         session['number'] = random.randint(1,100)
+        print(session['number'])
     if "tries" not in session:
         session['tries'] = 0
     return render_template('index.html')
@@ -20,7 +21,6 @@ def guess():
     #     session['guessed'] = session['guess']
     # else:
     #     session['guessed'].extend(str(session['guess']))
-    
     return redirect('/')
 
 @app.route('/playagain')
@@ -28,10 +28,17 @@ def reset():
     session.clear()
     return redirect('/')
 
+# @app.route('/leaderboard')
+# def leaderboard():
+#     if session['number'] == session['guess']:
+#         session['name'] = request.form['name']
+#     # session['name'] = request.form['name']
+#     return render_template('leaderboard.html')
 
-
-
-
+# @app.route('/leaderboardpost', methods=['POST'])
+# def leaderboardpost():
+#     session['name'] = request.form['name']
+#     return redirect('/leaderboard')
 
 
 if __name__=="__main__":   # Ensure this file is being run directly and not from a different module    

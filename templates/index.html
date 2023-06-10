@@ -13,7 +13,7 @@
     <h2 class="my-5">I am thinking of a number between 1 and 100</h2>
 
     {% if 'guess' in session %}
-        {% if session['tries'] >= 5 %}
+        {% if session['tries'] >= 10 %}
         <div class="card bg-secondary my-5">
             <h3 class="text-light my-5">You used up your {{session['tries']}} guesses!</h3>
             <h4 class="text-light">The number was {{session['number']}}!</h4>
@@ -26,6 +26,10 @@
                     <h3 class="text-light my-5">You got the number {{session['number']}}!</h3>
                     <h4 class="text-light">Good job!</h4>
                     <h4 class="text-light my-3">You got it in {{session['tries']}} times!</h4>
+                    <form action="/leaderboardpost" class="form-group">
+                        <input class="text-center my-4 py-2 form-control" type="text" name="name">
+                        <input type="submit" name="enterleaderboard" class="btn text-light border border-1 mb-4 py-2 mx-3">
+                    </form>
                     <a href="/playagain"><button class="mt-3 mb-4 btn btn-light">Play Again</button></a>
                 </div>
             {% elif session['number'] > session['guess'] %}
